@@ -28,9 +28,14 @@ cd /home/cloud_user/certificates
 
 
 Import the certificates
+
 sudo aws acm import-certificate --certificate file://server.crt --private-key file://server.key --certificate-chain file://ca.crt --region us-east-1
 sudo aws acm import-certificate --certificate file://client1.domain.tld.crt --private-key file://client1.domain.tld.key --certificate-chain file://ca.crt --region us-east-1
+--------------------------------------------------------------------------------------
+Import Certificates gives error invalid base64 thats due to new aws cli2 version:
 
+aws acm import-certificate --certificate file://server.crt --private-key file://server.key --certificate-chain file://ca.crt --region us-east-1 --cli-binary-format raw-in-base64-out
+aws acm import-certificate --certificate file://client1.domain.tld.crt --private-key file://client1.domain.tld.key --certificate-chain file://ca.crt --region us-east-1 --cli-binary-format raw-in-base64-out
 
 Export the client configuration (replace the endpoint id with the endpoint id from the Client VPN console)
 aws ec2 export-client-vpn-client-configuration --client-vpn-endpoint-id endpoint_id --output text>client-config.ovpn
