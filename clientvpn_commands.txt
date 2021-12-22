@@ -39,7 +39,18 @@ Append the client certificate and key to the open vpn config file
 cat >> client-config.ovpn 
 cert /path/client1.domain.tld.crt 
 key /path/client1.domain.tld.key 
+#If the above path not working so add the certficate manually(so it resolved my issue).
+<cert>
 
+Enter Certificate here
+
+</cert>
+
+<key>
+
+Enter key here
+
+</key>
 
 Install OpenVPN client
 sudo yum install -y openvpn
